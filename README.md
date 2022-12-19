@@ -107,13 +107,13 @@ For testing on mountain car environment a script "reinforcment.py" is created wh
 
 ### Usage
 
-´´´
+```
 python reinforcment.py --model Vgg
-´´´
+```
 or
-´´´
+```
 python reinforcment.py --model Resnet
-´´´
+```
 
 Comparing the time for each frame predictiction Resnet50 is approximately 1.3 times faster then the VGG16 model.
 
