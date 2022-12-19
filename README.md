@@ -88,10 +88,14 @@ The task is tested on four persons whereas the dataset was collected from only 3
 ## Results
 
 Initially the trained models evaluation metrics for validation fluctuated and also the loss was increasing which indicates signs of overfitting. Following are some results of initial trainings:
-<img src="images/in_resnet_acc.PNG" alt="Resnet-Acc" width="80" height="80">
-<img src="images/in_resnet_loss.PNG" alt="Resnet-Loss" width="80" height="80">
-<img src="images/in_vgg_acc.PNG" alt="Vgg-Acc" width="80" height="80">
-<img src="images/in_vgg_loss.PNG" alt="Vgg-loss" width="80" height="80">   
+
+<img src="images/in_resnet_acc.PNG" alt="Resnet-Acc" width="300" height="300">
+
+<img src="images/in_resnet_loss.PNG" alt="Resnet-Loss" width="300" height="300">
+
+<img src="images/in_vgg_acc.PNG" alt="Vgg-Acc" width="300" height="300">
+
+<img src="images/in_vgg_loss.PNG" alt="Vgg-loss" width="300" height="300">   
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
