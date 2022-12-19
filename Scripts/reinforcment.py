@@ -16,7 +16,7 @@ def parse_config():
     parser.add_argument(
         "--model",
         type=str,
-        default='Resnet50',
+        default='Resnet',
         help="Select model between Resnet50 and VGG16",
     )
 
@@ -33,10 +33,12 @@ def preprocess(image):
 if __name__ == "__main__":    
     args = parse_config()
     # load pre-trained model
-    if (args.model == 'Resnet50'):
+    if (args.model == 'Resnet'):
         model_path = './../Trained_Model/model_resnet.h5'
-    if (args.model == 'VGG16'):
+        print ("Loading Resnet50 model")
+    if (args.model == 'Vgg'):
         model_path = './../Trained_Model/model_vgg.h5'
+        print ("Loading VGG16 model")
 
     loaded_model = tf.keras.models.load_model(model_path)
     plt.ion()
