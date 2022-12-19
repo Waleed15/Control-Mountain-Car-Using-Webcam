@@ -7,8 +7,21 @@ import cv2
 from math import ceil
 import scipy
 import tensorflow as tf
-# from IPython import get_ipython
-# get_ipython().run_line_magic('matplotlib', 'qt')
+import argparse
+
+
+def parse_config():
+    parser = argparse.ArgumentParser(description="arg parser")
+
+    parser.add_argument(
+        "--model",
+        type=str,
+        default='Resnet50',
+        help="Select model between Resnet50 and VGG16",
+    )
+
+    args = parser.parse_args()
+    return args
 
 def preprocess(image):
     img_width, img_height = 224, 224
@@ -18,8 +31,13 @@ def preprocess(image):
     return np_image
 
 if __name__ == "__main__":    
+    args = parse_config()
     # load pre-trained model
-    model_path = './../Trained_Model/model_vgg.h5'
+    if (args.model == 'Resnet50'):
+        model_path = './../Trained_Model/model_resnet.h5'
+    if (args.model == 'VGG16'):
+        model_path = './../Trained_Model/model_vgg.h5'
+
     loaded_model = tf.keras.models.load_model(model_path)
     plt.ion()
 

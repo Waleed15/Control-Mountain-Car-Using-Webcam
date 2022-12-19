@@ -1,8 +1,8 @@
+<a name="readme-top"></a>
+
 [![LinkedIn][linkedin-shield]][linkedin-url]
 
-
-
-<!-- PROJECT LOGO -->
+<!-- PROJECT NAME -->
 <br />
 <div align="center">
   <h3 align="center">Control Mountain-Car-v0 Gym Using Webcam</h3>
@@ -20,19 +20,10 @@
         <li><a href="#built-with">Built With</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
+    <li><a href="#preparing-dataset">Preparing Dataset</a></li>
+    <li><a href="#model-for-training">Model for Training</a></li>
+    <li><a href="#evaluation">Evaluation</a></li>
+    <li><a href="#results">Results</a></li>
   </ol>
 </details>
 
@@ -54,125 +45,57 @@ This section should list major frameworks/libraries used to bootstrap this proje
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- PREPARING DATASET -->
+## Preparing Dataset
+As there are three actions for input for mountain car environment, in this project the dataset is divided into three classes i.e. 0, 1, 2. Class 0 contains data for action 0 and similarly for class 1 and 2. 
 
+This project uses hand gestures to publish actions to the mountain car environment. Class 0 contains images of a human raising his index fingure just. When just the index finger is raised the action 0 is to be published, whereas class 2 contains images of person raising his index and middle finger both. Class 1 contains images of a person doing nothing, just sitting.  So to sum up there are two gestures one raising index finger for action 0 and the other is to raise two fingers for action 2. These gestures are simple and accesible, as in action 1 the car does not move so for this action the person has to do nothing.
 
-<!-- GETTING STARTED -->
-## Getting Started
+The webcam is used to take photos  for creating dataset. 3 different person's photos are taken at differnt situaions, differnt lighting and with different camera angle. The photos of first 2 persons are used for training and validation whereas the third person's data is used for testing.
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+The data is divided into training, validation and testing. Training contains 70% of the data where as validation contains 20% and testing contains the remaining 10%.  
 
-### Prerequisites
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+<!-- MODEL FOR TRAINING -->
+## Model for Training
 
-### Installation
+In this project pretrained VGG-16 and ResNet50 on imagenet are used for training. Basic models are used in this project, with changes made only to the final layer. This is because this is just a three class classification problem while these models are built to handle up to 1000 classes.The last layer of both the models are passed through:
+- Global average pooling layer 
+- Flatten layer to flatten the output to 1 dimension 
+- A final Fully Connected Softmax Layer
+- Stochastic gradient descent is used as an optimizer 
 
-_Below is an example of how you can instruct your audience on installing and setting up your app. This template doesn't rely on any external dependencies or services._
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
-   ```sh
-   git clone https://github.com/your_username_/Project-Name.git
-   ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+<!-- EVALUATION -->
+## Evaluation
+
+For evaluation of models following metrics were observed:
++ Accuracy
++ Loss
++ Precision
++ Recall
+
+For the task both Resnet50 and VGG16 were used and compared on the basis of time in which each frame is passed through the model and prediction is made by the model. 
+The task is tested on four persons whereas the dataset was collected from only 3 of them.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
+<!-- RESULTS -->
+## Results
 
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
+Initially the trained models evaluation metrics for validation fluctuated and also the loss was increasing which indicates signs of overfitting. Following are some results of initial trainings:
+<img src="images/in_resnet_acc.PNG" alt="Resnet-Acc" width="80" height="80">
+<img src="images/in_resnet_loss.PNG" alt="Resnet-Loss" width="80" height="80">
+<img src="images/in_vgg_acc.PNG" alt="Vgg-Acc" width="80" height="80">
+<img src="images/in_vgg_loss.PNG" alt="Vgg-loss" width="80" height="80">   
 
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
-
-<!-- ROADMAP -->
-## Roadmap
-
-- [x] Add Changelog
-- [x] Add back to top links
-- [ ] Add Additional Templates w/ Examples
-- [ ] Add "components" document to easily copy & paste sections of the readme
-- [ ] Multi-language Support
-    - [ ] Chinese
-    - [ ] Spanish
-
-See the [open issues](https://github.com/othneildrew/Best-README-Template/issues) for a full list of proposed features (and known issues).
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTRIBUTING -->
-## Contributing
-
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
-
-If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
-Don't forget to give the project a star! Thanks again!
-
-1. Fork the Project
-2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- LICENSE -->
-## License
-
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- CONTACT -->
-## Contact
-
-Your Name - [@your_twitter](https://twitter.com/your_username) - email@example.com
-
-Project Link: [https://github.com/your_username/repo_name](https://github.com/your_username/repo_name)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
-* [Choose an Open Source License](https://choosealicense.com)
-* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
-* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
-* [Malven's Grid Cheatsheet](https://grid.malven.co/)
-* [Img Shields](https://shields.io)
-* [GitHub Pages](https://pages.github.com)
-* [Font Awesome](https://fontawesome.com)
-* [React Icons](https://react-icons.github.io/react-icons/search)
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
