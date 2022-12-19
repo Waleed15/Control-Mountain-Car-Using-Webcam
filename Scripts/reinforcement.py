@@ -73,7 +73,6 @@ if __name__ == "__main__":
             env.close()
             break
         plt.show()
-        # plt.pause(0.0001)
         plt.clf()
 
     cam.release()
