@@ -95,20 +95,17 @@ For training a jupyter notebook is created. Initially the trained models evaluat
 <img src="images/in_vgg_acc.PNG" alt="Vgg-Acc" width="400" height="300">
 <img src="images/in_vgg_loss.PNG" alt="Vgg-loss" width="400" height="300">   
 
-This issue is tried to be resolved by adding a dropout layer with a dropout rate of 0.2 before the fully connected layer and also a time based decay learning rate scheduler is added. But still the issue remains which suggest that dataset is too small for models to learn useful features. Following are the final results of training for 100 epochs:
+This issue is tried to be resolved by adding a dropout layer with a dropout rate of 0.2 before the fully connected layer and also a time based decay learning rate scheduler is added. But still the issue remains which suggest that dataset is too small for models to learn useful features. Following are the final results of Resnet50 training for 100 epochs:
 
 <img src="images/fin_resnet_acc.PNG" alt="Resnet-Acc" width="400" height="300">
 <img src="images/fin_resnet_loss.PNG" alt="Resnet-Loss" width="400" height="300">
 
-<img src="images/fin_vgg_acc.PNG" alt="Vgg-Acc" width="400" height="300">
-<img src="images/fin_vgg_loss.PNG" alt="Vgg-loss" width="400" height="300">  
-
 Results for evaluation on test data:
 
-| Metrics   | Resnet50 | VGG16 |
-| :---:     | :---:    | :---: |
-| Accuracy  | 0.7600   | 283   |
-| Loss      | 0.8652   | 283   |
+| Metrics   | Resnet50 | VGG16    |
+| :---:     | :---:    | :---:    |
+| Accuracy  | 0.7600   | 0.6400   |
+| Loss      | 0.8652   | 1.4939   |
 
 
 For testing on mountain car environment a script "reinforcement.py" is created which takes input argument for the model that is to be selected.
@@ -125,7 +122,7 @@ python reinforcement.py --model Resnet
 
 Comparing the time for each frame predictiction Resnet50 is approximately 1.3 times faster then the VGG16 model.
 
-For testing of the task 4 different persons evaluated it and a video recording is made of the observations. The predictions made by the models are sometimes incorrect when the lighting or background conditions are changed this mainly due to the small dataset that is used for training.
+For testing of the task 4 different persons evaluated it and a video recording is made on one person's observations. The predictions made by the models are sometimes incorrect when the lighting or background conditions are changed this mainly due to the small dataset that is used for training.
 With a larger dataset this issue can be resolved.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
